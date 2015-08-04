@@ -5,14 +5,17 @@
 \title{Wavelet multiple correlation (multivariate case).
 }
 \description{
-The \emph{WMC} function only generates a pdf plot (\emph{WMC_plot.pdf}) 
-to the Wavelet routine for multiple correlation 
-(\emph{wave.multiple.correlation}) from the \emph{wavemulcor} package 
-(Fernandez-Macho 2012), but also provides a way to handle multivariate
-time series easily as a list of N elements (time series).  
+The \code{\link{WMC}} function generates a plot to the wavelet 
+routine for multiple correlation (\emph{wave.multiple.correlation})
+from the  \emph{wavemulcor} package (Fernandez-Macho 2012b). 
+The \code{\link{WMC}} plot output can be displayed in the screen 
+(by default) or can be saved as PNG, JPG, PDF or EPS. Furthermore, 
+it also provides a way to handle multivariate time series easily as 
+a list of N elements (time series).  
 }
 \usage{
-WMC(inputDATA, Wname, J, Hpdf, Wpdf)
+WMC(inputDATA, Wname, J, device="screen", filename,
+          Hfig, WFig, Hpdf, Wpdf)
 }
 \arguments{
   \item{inputDATA}{
@@ -26,47 +29,65 @@ The wavelet function or filter to use in the decomposition.
   \item{J}{
 Specifies the depth of the decomposition.
 }
+  \item{device}{
+The type of the output device (by default the option is ``screen'',
+ and the other options are ``jpg'', ``png'', ``eps'' and ``pdf'').
+}
+  \item{filename}{
+The output filename.
+}
+  \item{Hfig}{
+The height of the 'jpg' or 'png' image. 
+
+}
+  \item{WFig}{
+The width of the 'jpg' or 'png' image. 
+}
   \item{Hpdf}{
-The height of the pdf file (output plot).
+The height of the 'eps' or 'pdf'.
 }
   \item{Wpdf}{
-The width of the pdf file (output plot).
+The width of the 'eps' or 'pdf'. 
 }
 }
 \details{
-The \emph{WMC} function helps to make easily the plot (in pdf 
-format) of the multiple correlation routine 
-(\emph{wave.multiple.correlation}) of the \emph{wavemulcor} package 
-(Fernandez-Macho 2012). The \emph{WMC} function also helps 
-to manage easily multivariate time series to use the Wavelet 
-multiple correlation routine. 
+The \code{\link{WMC}} function helps to make and save easily the plot of the 
+multiple correlation routine (\emph{wave.multiple.correlation}) of the 
+\emph{wavemulcor} package (Fernandez-Macho 2012b). The \emph{WMC} 
+function also helps to manage easily multivariate time series to use 
+the Wavelet multiple correlation routine. 
 }
 \value{
 Output:
 
-Output pdf file: \emph{WMC_plot.pdf}. 
+Output plot: \emph{screen or 'filename + .png, .jpg, .eps or .pdf'}.
 
 Output data: The same list of elements of the funtion \emph{
 wave.multiple.correlation} of the \emph{wavemulcor} package 
-(Fernandez-Macho 2012).
+(Fernandez-Macho 2012b).
 }
 \references{
-Fernandez-Macho, J.. Wavelet multiple correlation and
+Fernandez-Macho, J. (2012a). Wavelet multiple correlation and
 cross-correlation: A multiscale analysis of euro zone stock
 markets. \emph{Physica A: Statistical Mechanics and its Applications}, 
-391(4):1097-1104, 2012. \cr
+391(4):1097--1104. \cr
 
-Fernandez-Macho, J. (2012). Wavemulcor Reference manual. The 
-Comprehensive R Archive Network (CRAN), 
-http://cran.r-project.org/web/packages/wavemulcor/index.html.
+Fernandez-Macho, J. (2012b). \emph{wavemulcor: Wavelet routine for
+multiple correlation}. R package version 1.2. The Comprehensive R
+Archive Network (CRAN), \cr
+\url{http://cran.r-project.org/package=wavemulcor} \cr
+
+Polanco-Martinez, J. and J. Fernandez-Macho (2014). The
+package 'W2CWM2C': description, features and applications. 
+\emph{Computing in Science & Engineering}, 16(6):68--78.
+\href{http://www.computer.org/csdl/mags/cs/preprint/06894486.pdf}{DOI: 10.1109/MCSE.2014.96}.\cr
 }
 \author{
-Josue M. Polanco-Martinez (UPV/EHU).
-Dpt. of Econometrics and Statistics,
-& Instituto de Economia Publica,
-University of the Basque Country, Agirre Lehendakari
-etorb. 83, E48015 BILBAO, Spain.
-Email: bcppomaj@ehu.es, jomopo@gmail.com.
+Josue M. Polanco-Martinez (a.k.a. jomopo)..\cr
+BC3 - Basque Centre for Climate Change, Bilbao, Spain.\cr 
+Web1: \url{https://scholar.google.es/citations?user=8djLIhcAAAAJ&hl=en}.\cr
+Web2: \url{http://www.researchgate.net/profile/Josue_Polanco-Martinez}.\cr
+Email: josue.m.polanco@gmail.com.
 }
 \note{
 Needs \emph{wavemulcor} (to compute the \emph{wave.multiple.correlation}) 
@@ -81,21 +102,19 @@ and \emph{waveslim} packages (to compute the \emph{modwt} and the
 
  #:: Convert. log return using: ln(t + deltat) - ln(t) 
  #:: The application in this example is with stock market 
- #:: indexes and it is common to use log returns instead 
+ #:: indexes and it is common to use log returns instead of 
  #:: raw data. Other kinds of pre-processing data are possible. 
 
  dataexample  <- dataexample[-1] #remove the dates!
  dataexample  <- dataexample[,1:5]
  lrdatex      <- apply(log(dataexample), 2, diff)
- tslrdat      <- ts(lrdatex, start=1, frequency=1)
+ inputDATA    <- ts(lrdatex, start=1, frequency=1)
 
  #Input parameters 
   Wname       <- "la8"
   J           <- 8
-  Hp          <- 6
-  Wp          <- 10
-  tslrdat     <- tslrdat[,1:5]
-  compWMC     <- WMC(tslrdat, Wname, J, Hp, Wp)
+  compWMC     <- WMC(inputDATA, Wname, J, device="screen", NULL,
+                     NULL, NULL, NULL, NULL)
 }
 \keyword{ Multi-variate}
 \keyword{Wavelet multiple correlation}

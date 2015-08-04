@@ -5,14 +5,17 @@
 \title{Wavelet cross-correlation (bivariate case). 
 }
 \description{
-The \emph{WCC} function (bivariate case) computes the wavelet
+The \code{\link{WCC}} function (bivariate case) computes the wavelet
 cross correlation using the \emph{spin.correlation} function 
-of the \emph{waveslim} package for two time series and presents
-the result as a novel plot that reduce the number of plots of 
-the classical function \emph{spin.correlation}.  
+of the \emph{waveslim} package for two time series, and presents
+the result as a plot that reduce the number of plots of the 
+classical function \emph{spin.correlation}. The heatmap plot is 
+built using the \emph{colorspace} package and can be displayed
+in the screen or can be saved as PNG, JPG, PDF or EPS.
 }
 \usage{
-WCC(inputDATA, Wname, J, lmax, Hpdf, Wpdf)
+WCC(inputDATA, Wname, J, lmax, device="screen", filename,
+    Hfig, WFig, Hpdf, Wpdf)
 }
 \arguments{
   \item{inputDATA}{
@@ -29,28 +32,41 @@ Specifies the depth of the decomposition.
   \item{lmax}{
 The maximum lag.
 }
+  \item{device}{
+The type of the output device (by default the option is ``screen'',
+ and the other options are ``jpg'', ``png'', ``eps'' and ``pdf'').
+}
+  \item{filename}{
+The output filename.
+}
+  \item{Hfig}{
+The height of the 'jpg' or 'png' image.  
+
+}
+  \item{WFig}{
+The width of the 'jpg' or 'png' image.  
+}
   \item{Hpdf}{
-The height of the pdf file (output plot).
+The height of the 'eps' or 'pdf'. 
 }
   \item{Wpdf}{
-The width of the pdf file (output plot).
+The width of the 'eps' or 'pdf'. 
 }
 }
 \details{
-The \emph{WCC} function compute the Wavelet cross-correlation
-between two time series and plot the results in a single pdf 
-file (\emph{'wcc + var1 + var2.pdf'}) (please, see the Figure 3 of 
-Polanco-Martinez and Fernandez-Macho 2012). The \emph{WCC} code 
-is based on the \emph{spin.correlation} routine from Brandon 
-Whitcher's \emph{waveslim} \R package Version: 1.7.1, which is 
-based mainly on wavelet methodology developed in Whitcher, B., P. 
-Guttorp and D.B. Percival (2000) and Gencay, Selcuk and Whitcher 
-(2001).
+The \code{\link{WCC}} function compute the wavelet cross-correlation
+between two time series and plot the results in a single heatmap 
+plot (please, look at Figure 3 in Polanco-Martinez and Fernandez-Macho 
+2014). The \emph{WCC} code is based on the \emph{spin.correlation} 
+routine from Brandon Whitcher's \emph{waveslim} \R package Version: 
+1.7.1, which is based mainly on wavelet methodology developed in 
+Whitcher, B., P. Guttorp and D.B. Percival (2000) and Gencay, Selcuk 
+and Whitcher (2001).
 }
 \value{
 Output:
 
-Output pdf file: \emph{wcc_ + var1 + var 2 .pdf}
+Output plot: \emph{screen or 'filename + .png, .jpg, .eps or .pdf'}. 
 
 \emph{returns.cross.cor}: a matrix with the WCC values. 
 }
@@ -59,56 +75,60 @@ Gencay, R., F. Selcuk and B. Whitcher (2001). \emph{An
 Introduction to Wavelets and Other Filtering Methods in 
 Finance and Economics}, Academic Press.\cr
 
-Polanco-Martinez, J. and J. Fernandez-Macho (2012). The
+Ihaka, R., Murrell, P., Hornik, K., Fisher, J. C. and Zeileis, A.
+(2012). \emph{colorspace: Color Space Manipulation}. R package version
+1.2.0. The Comprehensive R Archive Network (CRAN), \cr
+\url{http://cran.r-project.org/package=colorspace} \cr
+
+Polanco-Martinez, J. and J. Fernandez-Macho (2014). The
 package 'W2CWM2C': description, features and applications.
-To be submitted under review to \emph{Journal of 
-Statistical Software}.\cr
+\emph{Computing in Science & Engineering},  16(6):68--78, 
+\href{http://www.computer.org/csdl/mags/cs/preprint/06894486.pdf}{DOI: 10.1109/MCSE.2014.96}.\cr
 
-Whitcher, B., P. Guttorp, and D.B. Percival. Wavelet analysis of
+Whitcher, B., P. Guttorp, and D.B. Percival (2000). Wavelet analysis of
 covariance with application to atmospheric time series. \emph{
-Journal of Geophysical Research - Atmospheres}, 105(D11):941-962, 2000. \cr
+Journal of Geophysical Research - Atmospheres}, 105(D11):941--962. \cr
 
-Whitcher, B. (2012). Waveslim reference manual. The Comprehensive 
-R Archive Network (CRAN), \cr
-http://cran.r-project.org/web/packages/waveslim/index.html\cr
+Whitcher, B. (2012). \emph{waveslim: Basic wavelet routines for one-,
+two- and three-dimensional signal processing}. R package version 1.7.1.
+The Comprehensive R Archive Network (CRAN), \cr
+\url{http://cran.r-project.org/package=waveslim} \cr
 }
 \author{
-Josue M. Polanco-Martinez (UPV/EHU).
-Dpt. of Econometrics and Statistics,
-& Instituto de Economia Publica,
-University of the Basque Country, Agirre Lehendakari
-etorb. 83, E48015 BILBAO, Spain.
-Email: bcppomaj@ehu.es, jomopo@gmail.com.
+Josue M. Polanco-Martinez (a.k.a. jomopo).\cr
+BC3 - Basque Centre for Climate Change, Bilbao, Spain.\cr 
+Web1: \url{https://scholar.google.es/citations?user=8djLIhcAAAAJ&hl=en}.\cr
+Web2: \url{http://www.researchgate.net/profile/Josue_Polanco-Martinez}.\cr
+Email: josue.m.polanco@gmail.com.
 }
 \note{
 Needs \emph{waveslim} package to calculate \emph{modwt}, 
-\emph{brick.wall} and \emph{spin.correlation}. 
+\emph{brick.wall} and \emph{spin.correlation} and also needs 
+the \emph{colorspace} package to plot the heatmaps. 
 }
 \examples{
-## See the Figure 3 of Polanco-Martinez and Fernandez-Macho 
-## 2012 (to be submitted under review to Journal of 
-## Statistical Software). 
+## Figure 3 (Polanco-Martinez and Fernandez-Macho 2014)
 
+ library("colorspace")
  library("waveslim")
  library("W2CWM2C")
  data(dataexample)  
 
  #:: Convert. log return using: ln(t + deltat) - ln(t) 
  #:: The application in this example is with stock market 
- #:: indexes and it is common to use log returns instead 
+ #:: indexes and it is common to use log returns instead of
  #:: raw data. Other kinds of pre-processing data are possible. 
 
  dataexample  <- dataexample[-1] #remove the dates!
  DAXCAC       <- dataexample[,c(3,4)] 
  lrdatex      <- apply(log(DAXCAC), 2, diff)
- tslrdat      <- ts(lrdatex, start=1, frequency=1)
+ inputDATA    <- ts(lrdatex, start=1, frequency=1)
 
- Wname   <- "la8"
- J       <- 8
- Hp      <- 6
- Wp      <- 10
- lmax    <- 30
- compWCC <- WCC(tslrdat, Wname, J, lmax, Hp, Wp)
+ Wname     <- "la8"
+ J         <- 8
+ lmax      <- 30
+ compWCC   <- WCC(inputDATA, Wname, J, lmax, device="screen", NULL,
+               NULL, NULL, NULL, NULL)
 }
 \keyword{bi-variate}
 \keyword{Wavelet cross correlation }

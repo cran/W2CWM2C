@@ -2,20 +2,23 @@
 \name{WMCC}
 \alias{WMCC}
 \alias{wmcc}
-\title{Wavelet Multiple cross-correlation (multivariate case).
+\title{Wavelet multiple cross-correlation (multivariate case).
 }
 \description{
-The \emph{WMCC} function (multivariate case) computes the Wavelet 
-Multiple cross correlation by means of the function 
+The \code{\link{WMCC}} function (multivariate case) computes the wavelet 
+multiple cross correlation by means of the function 
 \emph{wave.multiple.cross.correlation} from the \emph{wavemulcor} 
-package (Fernandez-Macho 2012) and present the result as a novel 
+package (Fernandez-Macho 2012b) and present the result as a novel 
 plot that reduce the number of plots of the classical function 
-\emph{wave.multiple.cross.correlation}. The \emph{WMC} function also 
-provides a way to handle multivariate time series easily as a list of 
-N elements (time series). 
+\emph{wave.multiple.cross.correlation}. The \code{\link{WMCC}} plot output 
+can be displayed in the screen (by default) or can be saved as PNG, 
+JPG, PDF or EPS. The \code{\link{WMCC}} function also provides a way 
+to handle multivariate time series easily as a list of N elements 
+(time series). 
 }
 \usage{
-WMCC(inputDATA, Wname, J, lmax, Hpdf, Wpdf)
+WMCC(inputDATA, Wname, J, lmax, device="screen", filename,
+     Hfig, WFig, Hpdf, Wpdf)
 }
 \arguments{
   \item{inputDATA}{
@@ -32,80 +35,99 @@ Specifies the depth of the decomposition.
   \item{lmax}{
 The maximum lag.
 }
+  \item{device}{
+The type of the output device (by default the option is ``screen'',
+ and the other options are ``jpg'', ``png'', ``eps'' and ``pdf'').
+}
+  \item{filename}{
+The output filename.
+}
+  \item{Hfig}{
+The height of the 'jpg' or 'png' image. 
+
+}
+  \item{WFig}{
+The width of the 'jpg' or 'png' image. 
+}
   \item{Hpdf}{
-The height of the pdf file (output plot).
+The height of the eps or pdf. 
 }
   \item{Wpdf}{
-The width of the pdf file (output plot).
+The width of the eps or pdf. 
 }
 }
 \details{
-The \emph{WMCC} function compute the Wavelet Multiple 
-Cross Correlation using the function \cr 
+The \code{\link{WMCC}} function compute the wavelet multiple 
+cross correlation using the function \cr 
 \emph{wave.multiple.cross.correlation} from the \emph{wavemulcor} 
-package (Fernandez-Macho 2012), but the \emph{WMCC} 
-function incorporates some graphical improvements (please, see the 
-Figure 5 of Polanco-Martinez and Fernandez-Macho 2012), such as 
+package (Fernandez-Macho 2012b), but the \emph{WMCC} 
+function incorporates some graphical improvements (please, look at  
+Figure 5 in Polanco-Martinez and Fernandez-Macho 2014), such as 
 the reduction of the number of plots to present the results of the 
 function \emph{wave.multiple.cross.correlation}. 
 }
 \value{
 Output:\cr
-Output pdf file: \emph{WMCC_plot.pdf}.
+Output plot: \emph{screen or 'filename + .png, .jpg, .eps or .pdf'}. 
 
 Output data: The same list of elements of the function 
 \emph{wave.multiple.cross.correlation} of the \emph{wavemulcor} 
-package (Fernandez-Macho 2012). 
+package (Fernandez-Macho 2012b). 
 }
 \references{
-Fernandez-Macho, J.. Wavelet multiple correlation and
+Fernandez-Macho, J. (2012a). Wavelet multiple correlation and
 cross-correlation: A multiscale analysis of euro zone stock
 markets. \emph{Physica A: Statistical Mechanics and its Applications}, 
-391(4):1097-1104, 2012. \cr
+391(4):1\-097--1104. \cr
 
-Fernandez-Macho, J. (2012). Wavemulcor Reference manual. The 
-Comprehensive R Archive Network (CRAN), 
-http://cran.r-project.org/web/packages/wavemulcor/index.html.\cr
+Fernandez-Macho, J. (2012b). \emph{wavemulcor: Wavelet routine for
+multiple correlation}. R package version 1.2. The Comprehensive R
+Archive Network (CRAN), \cr
+\url{http://cran.r-project.org/package=wavemulcor} \cr
 
-Polanco-Martinez, J. and J. Fernandez-Macho (2012). The
-package 'W2CWM2C': description, features and applications.
-To be submitted under review to \emph{Journal of
-Statistical Software}.
+Ihaka, R., Murrell, P., Hornik, K., Fisher, J. C. and Zeileis, A.
+(2012). \emph{colorspace: Color Space Manipulation}. R package version
+1.2.0, The Comprehensive R Archive Network (CRAN), \cr
+\url{http://cran.r-project.org/package=colorspace} \cr
+
+Polanco-Martinez, J. and J. Fernandez-Macho (2014). The
+package 'W2CWM2C': description, features and applications. 
+\emph{Computing in Science & Engineering}, 16(6):68--78.
+\href{http://www.computer.org/csdl/mags/cs/preprint/06894486.pdf}{DOI: 10.1109/MCSE.2014.96}.\cr
 }
 \author{
-Josue M. Polanco-Martinez (UPV/EHU).
-Dpt. of Econometrics and Statistics,
-& Instituto de Economia Publica,
-University of the Basque Country, Agirre Lehendakari
-etorb. 83, E48015 BILBAO, Spain.
-Email: bcppomaj@ehu.es, jomopo@gmail.com.
+Josue M. Polanco-Martinez (a.k.a. jomopo).\cr
+BC3 - Basque Centre for Climate Change, Bilbao, Spain.\cr 
+Web1: \url{https://scholar.google.es/citations?user=8djLIhcAAAAJ&hl=en}.\cr
+Web2: \url{http://www.researchgate.net/profile/Josue_Polanco-Martinez}.\cr
+Email: josue.m.polanco@gmail.com.
 }
 \note{
-Needs \emph{wavemulcor} (to compute the \emph{wave.multiple.cross.correlation})
-and \emph{waveslim} packages (to compute the \emph{modwt} and the
-\emph{brick.wall}).
+Needs \emph{wavemulcor} (to compute the \emph{wave.multiple.cross.correlation}) and \emph{waveslim} packages (to compute the \emph{modwt} and the \emph{brick.wall}) and also needs the \emph{colorspace} package to plot the heatmaps.
 }
 \examples{
 
+ library("colorspace")
  library("wavemulcor")
  library("W2CWM2C")
  data(dataexample)
 
+ #:: Figure 5 (Polanco-Martinez and Fernandez-Macho (2014).
+
  #:: Convert. log return using: ln(t + deltat) - ln(t) 
  #:: The application in this example is with stock market 
- #:: indexes and it is common to use log returns instead 
+ #:: indexes and it is common to use log returns instead of
  #:: raw data. Other kinds of pre-processing data are possible. 
 
  dataexample  <- dataexample[-1] #remove the dates!
  lrdatex      <- apply(log(dataexample), 2, diff)
- tslrdat      <- ts(lrdatex, start=1, frequency=1)
+ inputDATA    <- ts(lrdatex, start=1, frequency=1)
 
- Wname   <- "la8"
- J       <- 8
- Hp      <- 6
- Wp      <- 10
- lmax    <- 30
- compWCC <- WMCC(tslrdat, Wname, J, lmax, Hp, Wp)
+ Wname     <- "la8"
+ J         <- 8
+ lmax      <- 30
+ compWCC   <- WMCC(inputDATA, Wname, J, lmax, device="screen", NULL,
+                   NULL, NULL, NULL, NULL)
 }
-\keyword{Multi-variate }
+\keyword{Multi-variate}
 \keyword{Wavelet Multiple cross-correlation}
