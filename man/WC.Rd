@@ -10,7 +10,7 @@ correlation by means of the function \emph{wave.-correlation} of
 the \emph{waveslim} package to several time series, makes a 
 pairwise comparisons and plot the pairwise wavelet correlations in 
 descending order as a single heatmap using the \emph{colorspace} 
-package. The input data are multivariate time series and this 
+package. The input data are multivariate time series and \code{\link{WC}}
 function only tackle arrays with N x C (elements x columns, where the
 number of columns are between 2 and 7) dimensions. 
 }
@@ -56,10 +56,10 @@ The \code{\link{WC}} function compute the wavelet correlation among
 time series and plots the results in a single heatmap plot 
 (which can be displayed in the screen or can be saved as 
 PNG, JPG, PDF or EPS) showing the WC values as a table (please, 
-look at Figure 1 in Polanco-Martinez and Fernandez-Macho 2014). The 
-\code{\link{WC}} code is based on the \emph{wave.correlation} routine 
+look at Figure 3 in \strong{Polanco-Martinez} and Fernandez-Macho 2014). 
+The \code{\link{WC}} code is based on the \emph{wave.correlation} routine 
 from Brandon Whitcher's \emph{waveslim} \R package Version: 1.7.1,
-which is based mainly on wavelet methodology developed in 
+which is based mainly on wavelet methodology developed by
 Whitcher, B., P. Guttorp and D.B. Percival (2000) and Gencay, 
 Selcuk and Whitcher (2001). 
 }
@@ -86,28 +86,28 @@ and Economics}, Academic Press.\cr
 
 Ihaka, R., Murrell, P., Hornik, K., Fisher, J. C. and Zeileis, A.
 (2012). \emph{colorspace: Color Space Manipulation}. R package version
-1.2.0. The Comprehensive R Archive Network (CRAN), \cr
-\url{http://cran.r-project.org/package=colorspace} \cr
+1.2.0, The Comprehensive R Archive Network (CRAN), <URL: \url{https://cran.r-project.org/package=colorspace}>. \cr
 
-Polanco-Martinez, J. and J. Fernandez-Macho (2014). The
+\strong{Polanco-Martinez, J.} and J. Fernandez-Macho (2014). The
 package 'W2CWM2C': description, features and applications. 
-\emph{Computing in Science & Engineering}, 16(6):68--78.
-\href{http://www.computer.org/csdl/mags/cs/preprint/06894486.pdf}{DOI: 10.1109/MCSE.2014.96}.\cr
+\emph{Computing in Science & Engineering}, \strong{16}(6):68--78. \cr 
+{\doi{10.1109/MCSE.2014.96}}. \cr
 
 Whitcher, B., P. Guttorp, and D.B. Percival (2000). Wavelet analysis of
 covariance with application to atmospheric time series. \emph{
-Journal of Geophysical Research - Atmospheres}, 105(D11):941--962. \cr
+Journal of Geophysical Research - Atmospheres}, \strong{105}(D11):941--962. 
+{\doi{10.1029/2000JD900110}}. \cr
 
 Whitcher, B. (2012). \emph{waveslim: Basic wavelet routines for one-,
-two- and three-dimensional signal processing}. R package version 1.7.1.
+two- and three-dimensional signal processing}. R package version 1.7.1,
 The Comprehensive R Archive Network (CRAN), \cr
-\url{http://cran.r-project.org/package=waveslim} \cr
+<URL \url{https://cran.r-project.org/package=waveslim}>. \cr
 }
 \author{
 Josue M. Polanco-Martinez (a.k.a. jomopo).\cr
 BC3 - Basque Centre for Climate Change, Bilbao, Spain.\cr 
 Web1: \url{https://scholar.google.es/citations?user=8djLIhcAAAAJ&hl=en}.\cr
-Web2: \url{http://www.researchgate.net/profile/Josue_Polanco-Martinez}.\cr
+Web2: \url{https://www.researchgate.net/profile/Josue_Polanco-Martinez}.\cr
 Email: josue.m.polanco@gmail.com.
 }
 \note{
@@ -115,17 +115,17 @@ Needs \emph{waveslim} package to calculate \emph{modwt},
  \emph{brick.wall} and the \emph{wave.correlation} and also 
 needs the \emph{colorspace} package to plot the heatmaps.}
 \examples{
-## Figure 1 (Polanco-Martinez and Fernandez-Macho 2014). 
+## Figure 3 (Polanco-Martinez and Fernandez-Macho 2014). 
 
  library("colorspace")
  library("waveslim")
  library("W2CWM2C") 
  data(dataexample)   
 
- #:: Convert. log returns using: ln(t + deltat) - ln(t) 
- #:: The application in this example is with stock market 
- #:: indexes and it is common to use log returns instead of
- #:: raw data. Other kinds of pre-processing data are possible. 
+ #:: Transforms to log returns using: ln(t + deltat) - ln(t). 
+ #:: The application in this example uses stock market 
+ #:: indexes (it is common to use log returns instead of
+ #:: raw data). Other kinds of pre-processing data are possible. 
 
  dataexample  <- dataexample[-1] # remove dates!
  dataexample  <- dataexample[,1:5]

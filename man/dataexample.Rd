@@ -16,7 +16,7 @@ working day before each of these holidays.
 }
 \format{A list containing 2216 elements and 7 variables
 }
-\source{\url{http://finance.yahoo.com}
+\source{\url{https://finance.yahoo.com}
 }
 \keyword{datasets}
 

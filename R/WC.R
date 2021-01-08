@@ -1,3 +1,26 @@
+######################################################################
+#:: WC function: wavelet correlation -bivariate case from the        #
+#:: R package W2CWM2C                                                #
+#:: Programmed by Josue M. Polanco Martinez a.k.a jomopo             #
+#:: josue.m.polanco@gmail.com                                        #
+######################################################################
+#:: Copyright (C) 2012, 2015, 2021 Josue M. Polanco Martinez 
+#   This file is part of W2CWM2C 
+#
+#   W2CWM2C is free software: you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published 
+#   by the Free Software Foundation, either version 3 of the License, 
+#   or (at your option) any later version.
+#
+#   W2CWM2C is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with W2CWM2C. If not, see <http://www.gnu.org/licenses/>.
+######################################################################
+
 WC <-
 function(inputDATA, Wname, J, device="screen", filename, 
           Hfig, WFig, Hpdf, Wpdf) { 
@@ -59,7 +82,7 @@ function(inputDATA, Wname, J, device="screen", filename,
  
   #To sort (descending/decreasing mode) the pair-wise correlations! 
   to3Dp   <- wavcor.modwtsDAT[,,1] 
-  SUMS    <- rowSums(to3Dp)
+  SUMS    <- rowSums(to3Dp, na.rm=T)
   names(SUMS)[1:Ncomb] <- to.axix
   soSU    <- sort(SUMS, decreasing=T)
   NEWto.axix      <- names(soSU)
@@ -72,7 +95,7 @@ function(inputDATA, Wname, J, device="screen", filename,
   Ncol     <- length(xx)*J*8
   Palette  <- diverge_hcl(Ncol, c=c(100,0), l=c(50,90), power=1.3)
   #:: colorbar! 
-  rangev   <- seq(min(to3Dp), max(to3Dp), length.out=J)
+  rangev   <- seq(min(to3Dp, na.rm=T), max(to3Dp, na.rm=T), length.out=J)
   rangebar <- matrix(rangev, nrow=1, ncol=J, byrow=TRUE)
  
   j    <- 1:J 

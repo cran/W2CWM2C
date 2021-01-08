@@ -60,9 +60,9 @@ The width of the eps or pdf.
 The \code{\link{WMCC}} function compute the wavelet multiple 
 cross correlation using the function \cr 
 \emph{wave.multiple.cross.correlation} from the \emph{wavemulcor} 
-package (Fernandez-Macho 2012b), but the \emph{WMCC} 
+package (Fernandez-Macho 2012b), but the \code{\link{WMCC}}
 function incorporates some graphical improvements (please, look at  
-Figure 5 in Polanco-Martinez and Fernandez-Macho 2014), such as 
+Figure 7 in Polanco-Martinez and Fernandez-Macho 2014), such as 
 the reduction of the number of plots to present the results of the 
 function \emph{wave.multiple.cross.correlation}. 
 }
@@ -77,29 +77,27 @@ package (Fernandez-Macho 2012b).
 \references{
 Fernandez-Macho, J. (2012a). Wavelet multiple correlation and
 cross-correlation: A multiscale analysis of euro zone stock
-markets. \emph{Physica A: Statistical Mechanics and its Applications}, 
-391(4):1\-097--1104. \cr
+markets. \emph{Physica A: Statistical Mechanics and its Applications}, \cr
+\strong{391}(4):1097--1104. {\doi{10.1016/j.physa.2011.11.002}}. \cr
 
 Fernandez-Macho, J. (2012b). \emph{wavemulcor: Wavelet routine for
-multiple correlation}. R package version 1.2. The Comprehensive R
-Archive Network (CRAN), \cr
-\url{http://cran.r-project.org/package=wavemulcor} \cr
+multiple correlation}. R package version 1.2, The Comprehensive R
+Archive Network (CRAN), <URL: \url{https://cran.r-project.org/package=wavemulcor}>. \cr
 
 Ihaka, R., Murrell, P., Hornik, K., Fisher, J. C. and Zeileis, A.
 (2012). \emph{colorspace: Color Space Manipulation}. R package version
-1.2.0, The Comprehensive R Archive Network (CRAN), \cr
-\url{http://cran.r-project.org/package=colorspace} \cr
+1.2.0, The Comprehensive R Archive Network (CRAN), <URL: \url{https://cran.r-project.org/package=colorspace}>. \cr
 
-Polanco-Martinez, J. and J. Fernandez-Macho (2014). The
+\strong{Polanco-Martinez, J.} and J. Fernandez-Macho (2014). The
 package 'W2CWM2C': description, features and applications. 
-\emph{Computing in Science & Engineering}, 16(6):68--78.
-\href{http://www.computer.org/csdl/mags/cs/preprint/06894486.pdf}{DOI: 10.1109/MCSE.2014.96}.\cr
+\emph{Computing in Science & Engineering}, \strong{16}(6):68--78.  
+{\doi{10.1109/MCSE.2014.96}}. \cr
 }
 \author{
 Josue M. Polanco-Martinez (a.k.a. jomopo).\cr
 BC3 - Basque Centre for Climate Change, Bilbao, Spain.\cr 
 Web1: \url{https://scholar.google.es/citations?user=8djLIhcAAAAJ&hl=en}.\cr
-Web2: \url{http://www.researchgate.net/profile/Josue_Polanco-Martinez}.\cr
+Web2: \url{https://www.researchgate.net/profile/Josue_Polanco-Martinez}.\cr
 Email: josue.m.polanco@gmail.com.
 }
 \note{
@@ -112,12 +110,12 @@ Needs \emph{wavemulcor} (to compute the \emph{wave.multiple.cross.correlation}) 
  library("W2CWM2C")
  data(dataexample)
 
- #:: Figure 5 (Polanco-Martinez and Fernandez-Macho (2014).
+ #:: Figure 7 (Polanco-Martinez and Fernandez-Macho (2014).
 
- #:: Convert. log return using: ln(t + deltat) - ln(t) 
- #:: The application in this example is with stock market 
- #:: indexes and it is common to use log returns instead of
- #:: raw data. Other kinds of pre-processing data are possible. 
+ #:: Transform log returns using: ln(t + deltat) - ln(t). 
+ #:: The application in this example uses stock market 
+ #:: indexes (it is common to use log returns instead of
+ #:: raw data). Other kinds of pre-processing data are possible. 
 
  dataexample  <- dataexample[-1] #remove the dates!
  lrdatex      <- apply(log(dataexample), 2, diff)
